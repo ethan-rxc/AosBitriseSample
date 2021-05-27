@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/FirstFragment">
+
+  <include app:graph="@navigation/second_nav_graph" />
+
+  <fragment
+    android:id="@+id/FirstFragment"
+    android:name="com.sample.bollsal.ui.SearchFragment"
+    android:label="@string/first_fragment_label"
+    tools:layout="@layout/fragment_search">
+    <action
+      android:id="@+id/action_FirstFragment_to_SecondFragment"
+      app:destination="@id/SecondFragment"
+      app:popUpTo="@+id/FirstFragment"
+      app:popUpToInclusive="true" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/SecondFragment"
+    android:name="com.sample.bollsal.ui.navigation.BollsalFragment"
+    android:label="@string/second_fragment_label"
+    tools:layout="@layout/fragment_bollsal">
+    <action
+      android:id="@+id/action_SecondFragment_to_FirstFragment"
+      app:destination="@id/FirstFragment" />
+  </fragment>
+
+  <action
+    android:id="@+id/action_global_globalActionFragment"
+    app:destination="@id/globalActionFragment" />
+
+  <fragment
+    android:id="@+id/safeArgFragment"
+    android:name="com.sample.bollsal.ui.navigation.SafeArgFragment"
+    android:label="SafeArgFragment"
+    tools:layout="@layout/fragment_safearg">
+    <argument
+      android:name="num"
+      app:argType="integer" />
+    <argument
+      android:name="key"
+      app:argType="string" />
+    <action
+      android:id="@+id/action_safeArgFragment_to_globalActionFragment2"
+      app:destination="@id/globalActionFragment"
+      app:popUpTo="@+id/globalActionFragment"
+      app:popUpToInclusive="true" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/globalActionFragment"
+    android:name="com.sample.bollsal.ui.navigation.GlobalActionFragment"
+    android:label="GlobalActionFragment"
+    tools:layout="@layout/fragment_globalaction">
+    <action
+      android:id="@+id/action_globalActionFragment_to_safeArgFragment"
+      app:destination="@id/safeArgFragment"
+      app:popUpTo="@+id/safeArgFragment"
+      app:popUpToInclusive="true" />
+  </fragment>
+</navigation>
